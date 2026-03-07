@@ -454,6 +454,8 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid rgba(244,240,232,0.1);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .brand-item {
@@ -791,6 +793,9 @@
     .contact-heading { font-size: clamp(2.5rem, 10vw, 4rem); }
     footer { padding: 3rem 1.5rem 2rem; }
     .view-all-link { font-size: .8rem; padding: .6rem 1.2rem; }
+    .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .brand-item { padding: 1.5rem 1rem; min-height: 80px; }
+    .brand-logo { max-width: 80px; max-height: 30px; }
     .contact-form input,
     .contact-form textarea { font-size: 16px; } /* prevent iOS zoom */
   }
@@ -798,6 +803,8 @@
   @media (max-width: 480px) {
     .hero-image-col { height: 65vw; }
     .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .brand-item { padding: 1.25rem .75rem; min-height: 70px; }
+    .brand-logo { max-width: 70px; max-height: 28px; }
     .about-stats { grid-template-columns: 1fr 1fr; }
     .work-grid { gap: 1rem; }
     .contact-form-row { flex-direction: column; }
