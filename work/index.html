@@ -3,1126 +3,248 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MJ Abiva — Director & Producer, New York City</title>
-<meta name="description" content="MJ Abiva is a New York City-based director and producer crafting kinetic media for dance, fashion, and cultural storytelling."/>
+<title>Work — MJ Abiva</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;1,700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --cream: #F4F0E8;
-    --black: #0C0B09;
-    --ink: #1A1816;
-    --muted: #7A7060;
-    --accent: #C17F3A;
-    --border: rgba(12,11,9,0.12);
-    --font-display: 'Barlow Condensed', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-body: 'DM Sans', sans-serif;
-  }
+:root{--cream:#F4F0E8;--black:#0C0B09;--ink:#1A1816;--muted:#7A7060;--accent:#C17F3A;--border:rgba(12,11,9,0.12);--font-display:'Barlow Condensed',sans-serif;--font-mono:'IBM Plex Mono',monospace;--font-body:'DM Sans',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:var(--font-body);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:var(--cream);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-mono);font-size:.8rem;font-weight:500;letter-spacing:.1em;text-decoration:none;color:var(--ink);text-transform:uppercase;}
+.nav-back{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color .2s;}
+.nav-back:hover{color:var(--ink);}
+.nav-email{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:lowercase;color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:.5rem 1rem;transition:background .2s,color .2s;}
+.nav-email:hover{background:var(--ink);color:var(--cream);}
 
-  html { scroll-behavior: smooth; }
+/* HEADER */
+.page-header{padding:8rem 3rem 4rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;}
+.page-title{font-family:var(--font-display);font-size:clamp(5rem,12vw,12rem);font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-0.01em;}
+.page-count{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
 
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-weight: 300;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+/* FILTER BAR */
+.filter-bar{padding:1.5rem 3rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+.filter-label{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.filter-btn{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid var(--border);color:var(--muted);padding:.4rem .9rem;cursor:pointer;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 
-  /* ── PAGELOADER ── */
-  .pageloader {
-    position: fixed; inset: 0;
-    background: var(--black);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 9999;
-    animation: loaderOut 0.6s ease 1.8s forwards;
-  }
-  .pageloader-text {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 6vw, 4rem);
-    color: var(--cream);
-    letter-spacing: 0.2em;
-    font-weight: 300;
-    animation: loaderFade 1.4s ease;
-  }
-  @keyframes loaderFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes loaderOut { to { opacity: 0; pointer-events: none; } }
+/* GRID */
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.work-item{background:var(--cream);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;transition:background .2s;}
+.work-item:hover{background:rgba(12,11,9,.03);}
+.work-item.hidden{display:none;}
+.work-thumb{position:relative;overflow:hidden;aspect-ratio:16/10;background:rgba(12,11,9,.06);}
+.work-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.work-item:hover .work-thumb img{transform:scale(1.03);}
+.work-info{padding:1.5rem;}
+.work-category{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem;}
+.work-title{font-family:var(--font-display);font-size:1.6rem;font-weight:800;text-transform:uppercase;line-height:.95;margin-bottom:.4rem;}
+.work-year{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--muted);}
+.work-arrow{font-size:1.2rem;color:var(--muted);margin-left:auto;padding:1.5rem;align-self:flex-end;transition:transform .3s,color .3s;}
+.work-item:hover .work-arrow{transform:translateX(4px);color:var(--accent);}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.5rem 3rem;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    opacity: 0;
-    animation: fadeDown 0.6s ease 2.2s forwards;
-  }
-  @keyframes fadeDown { to { opacity: 1; } }
+/* COMING SOON */
+.work-item.soon{opacity:.4;pointer-events:none;}
+.work-item.soon .work-thumb::after{content:'Coming Soon';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);background:rgba(244,240,232,.7);}
 
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: var(--ink);
-    text-transform: uppercase;
-  }
+footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-back{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,240,232,.4);text-decoration:none;transition:color .2s;}
+.footer-back:hover{color:var(--cream);}
+.footer-mark{font-family:var(--font-display);font-size:2rem;font-weight:800;text-transform:uppercase;color:rgba(244,240,232,.1);}
 
-  .nav-links {
-    display: flex; align-items: center; gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
-    background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.25s ease;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  .nav-email {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: lowercase;
-    color: var(--ink);
-    text-decoration: none;
-    border: 1px solid var(--ink);
-    padding: 0.5rem 1rem;
-    transition: background 0.2s, color 0.2s;
-  }
-  .nav-email:hover { background: var(--ink); color: var(--cream); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 5rem;
-  }
-
-  .hero-image-col {
-    position: relative; overflow: hidden;
-  }
-  .hero-image-col img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transform: scale(1.05);
-    animation: heroImgIn 1.2s ease 2.2s forwards;
-  }
-  @keyframes heroImgIn { to { transform: scale(1); } }
-
-  .hero-content {
-    display: flex; flex-direction: column; justify-content: space-between;
-    padding: 3rem 3rem 3rem 4rem;
-    opacity: 0;
-    animation: fadeIn 0.8s ease 2.4s forwards;
-  }
-  @keyframes fadeIn { to { opacity: 1; } }
-
-  .hero-top {}
-
-  .hero-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-name {
-    font-family: var(--font-display);
-    font-size: clamp(5rem, 9vw, 9rem);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--muted);
-  }
-
-  .hero-bio {
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 42ch;
-    margin-bottom: 3rem;
-  }
-
-  .hero-disciplines {
-    display: flex; flex-direction: column; gap: 0;
-  }
-  .hero-discipline {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--muted);
-    transition: color 0.2s;
-  }
-  .hero-discipline:hover { color: var(--ink); }
-
-  .hero-bottom {
-    display: flex; align-items: flex-end; justify-content: space-between;
-  }
-
-  .hero-partners {}
-  .hero-partners-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
-  .hero-partners-logos {
-    display: flex; align-items: center; gap: 1.5rem;
-  }
-  .hero-partners-logos img {
-    height: 28px; width: auto;
-    opacity: 0.7;
-    filter: grayscale(100%);
-    transition: opacity 0.2s;
-  }
-  .hero-partners-logos img:hover { opacity: 1; }
-
-  .hero-scroll {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .hero-scroll::before {
-    content: '';
-    width: 1px; height: 3rem;
-    background: var(--muted);
-    display: block;
-  }
-
-  /* ── SECTION COMMONS ── */
-  section { padding: 7rem 3rem; border-top: 1px solid var(--border); }
-
-  .section-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 1.5rem;
-  }
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(5rem, 10vw, 10rem);
-    font-weight: 800;
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: lowercase;
-    color: var(--muted);
-    margin-bottom: 4rem;
-  }
-
-  /* ── WORK ── */
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .project-item {
-    background: var(--cream);
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .project-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-    filter: grayscale(20%);
-  }
-  .project-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
-
-  .project-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(12,11,9,0.7) 0%, transparent 50%);
-    opacity: 0; transition: opacity 0.4s;
-    display: flex; align-items: flex-end;
-    padding: 2rem;
-  }
-  .project-item:hover .project-overlay { opacity: 1; }
-
-  .project-info {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 1.5rem;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    background: linear-gradient(to top, rgba(12,11,9,0.5), transparent);
-  }
-
-  .project-title {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: var(--cream);
-  }
-  .project-year {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: rgba(244,240,232,0.6);
-    letter-spacing: 0.1em;
-  }
-
-  .project-category {
-    position: absolute; top: 1.5rem; left: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(244,240,232,0.7);
-    background: rgba(12,11,9,0.4);
-    padding: 0.3rem 0.7rem;
-    backdrop-filter: blur(4px);
-  }
-
-  .view-all-link {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    margin-top: 2.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 0.25rem;
-    transition: gap 0.2s, color 0.2s;
-  }
-  .view-all-link:hover { gap: 1.25rem; color: var(--accent); border-color: var(--accent); }
-  .view-all-link::after { content: '→'; }
-
-  /* ── SERVICES ── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-
-  .service-item {
-    padding: 3rem 2.5rem;
-    border-right: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .service-item:last-child { border-right: none; }
-
-  .service-item::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .service-item:hover::before { transform: scaleX(1); }
-
-  .service-number {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    display: block;
-  }
-
-  .service-name {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 2.8vw, 3rem);
-    font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .service-desc {
-    font-size: 0.875rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-
-  .service-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 0.5rem;
-  }
-  .service-list li {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-    padding-left: 1rem;
-    position: relative;
-  }
-  .service-list li::before {
-    content: '—';
-    position: absolute; left: 0;
-    color: var(--accent);
-  }
-
-  .service-image {
-    width: 100%; aspect-ratio: 3/2;
-    object-fit: cover;
-    display: block;
-    margin-top: 2rem;
-    filter: grayscale(30%);
-    transition: filter 0.4s;
-  }
-  .service-item:hover .service-image { filter: grayscale(0%); }
-
-  /* ── BRANDS ── */
-  .brands-section { background: var(--black); color: var(--cream); }
-  .brands-section .section-tag { color: rgba(244,240,232,0.4); }
-  .brands-section .section-title { color: var(--cream); }
-  .brands-section .section-sub { color: rgba(244,240,232,0.4); }
-
-  .brands-intro {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-    font-weight: 300;
-    font-style: italic;
-    color: rgba(244,240,232,0.6);
-    max-width: 50ch;
-    line-height: 1.6;
-    margin-bottom: 4rem;
-  }
-
-  .brands-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border: 1px solid rgba(244,240,232,0.1);
-  }
-
-  .brand-item {
-    padding: 2.5rem 2rem;
-    display: flex; align-items: center; justify-content: center;
-    border-right: 1px solid rgba(244,240,232,0.1);
-    border-bottom: 1px solid rgba(244,240,232,0.1);
-    transition: background 0.3s;
-    text-decoration: none;
-    position: relative;
-    min-height: 110px;
-  }
-  .brand-item:hover { background: rgba(244,240,232,0.05); }
-
-  a.brand-item::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  a.brand-item:hover::after { transform: scaleX(1); }
-
-  /* standard brand logo — force white via filter */
-  .brand-logo {
-    max-width: 110px;
-    max-height: 40px;
-    width: auto; height: auto;
-    object-fit: contain;
-    display: block;
-    filter: brightness(0) invert(1);
-    opacity: 0.45;
-    transition: opacity 0.3s;
-  }
-  .brand-item:hover .brand-logo { opacity: 0.9; }
-
-  /* partner hover: wordmark → sigil */
-  .partner-logo-wrap {
-    position: relative;
-    width: 130px;
-    height: 50px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .partner-wordmark {
-    position: absolute;
-    max-width: 130px;
-    max-height: 35px;
-    width: auto; height: auto;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    opacity: 0.45;
-    transition: opacity 0.35s ease;
-  }
-  .partner-sigil {
-    position: absolute;
-    max-width: 42px;
-    max-height: 42px;
-    width: auto; height: auto;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-  .brand-item:hover .partner-wordmark { opacity: 0; }
-  .brand-item:hover .partner-sigil { opacity: 0.9; }
-
-  .brands-note {
-    margin-top: 2.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,240,232,0.25);
-    line-height: 1.7;
-  }
-
-  /* ── ABOUT STRIP ── */
-  .about-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .about-image-wrap {
-    position: relative;
-  }
-  .about-image-wrap img {
-    width: 100%;
-    display: block;
-    filter: grayscale(15%);
-  }
-  .about-image-wrap::after {
-    content: '';
-    position: absolute; bottom: -1.5rem; right: -1.5rem;
-    width: 60%; height: 60%;
-    border: 1px solid var(--accent);
-    z-index: -1;
-  }
-
-  .about-content {}
-  .about-heading {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 6vw, 6.5rem);
-    font-weight: 800;
-    line-height: 0.92;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-  }
-  .about-text {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: var(--muted);
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-  .about-text strong { color: var(--ink); font-weight: 500; }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--border);
-  }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 300;
-    line-height: 1;
-    display: block;
-  }
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 0.5rem;
-    display: block;
-  }
-
-  /* ── CONTACT ── */
-  .contact-section {
-    background: var(--ink);
-    color: var(--cream);
-    text-align: center;
-    padding: 8rem 3rem;
-  }
-  .contact-pre {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(244,240,232,0.4);
-    margin-bottom: 2rem;
-    display: block;
-  }
-  .contact-heading {
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 10vw, 10rem);
-    font-weight: 800;
-    line-height: 0.88;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-  .contact-sub {
-    font-size: 0.9rem;
-    color: rgba(244,240,232,0.5);
-    font-weight: 300;
-    max-width: 40ch;
-    margin: 0 auto 3rem;
-    line-height: 1.7;
-  }
-  .contact-email-link {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
-    color: var(--cream);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(244,240,232,0.3);
-    padding-bottom: 0.25rem;
-    transition: border-color 0.2s, color 0.2s;
-    font-style: italic;
-  }
-  .contact-email-link:hover { color: var(--accent); border-color: var(--accent); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black);
-    padding: 4rem 3rem 2rem;
-    border-top: 1px solid rgba(244,240,232,0.08);
-  }
-  .footer-top {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(244,240,232,0.08);
-  }
-  .footer-wordmark {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-  }
-  .footer-wordmark span { color: rgba(244,240,232,0.25); }
-
-  .footer-cols {
-    display: flex; gap: 4rem;
-  }
-  .footer-col-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,240,232,0.3);
-    margin-bottom: 1rem;
-    display: block;
-  }
-  .footer-col-links {
-    display: flex; flex-direction: column; gap: 0.5rem;
-    list-style: none;
-  }
-  .footer-col-links a {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: rgba(244,240,232,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-col-links a:hover { color: var(--cream); }
-
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-copy {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,240,232,0.2);
-  }
-  .footer-boathouse {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,240,232,0.2);
-    text-decoration: none;
-  }
-  .footer-boathouse:hover { color: rgba(244,240,232,0.5); }
-
-  /* ── MOBILE ── */
-  .mobile-menu-btn {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    padding: 0.5rem;
-  }
-  .mobile-menu-btn span {
-    display: block; width: 22px; height: 1px;
-    background: var(--ink); margin: 5px 0;
-    transition: all 0.3s;
-  }
-
-  @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .service-item { border-right: none; border-bottom: 1px solid var(--border); }
-    .brands-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-strip { grid-template-columns: 1fr; gap: 3rem; }
-    .about-image-wrap::after { display: none; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1.25rem 1.5rem; }
-    .nav-links { display: none; }
-    .mobile-menu-btn { display: block; }
-    .nav-email { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-image-col { height: 55vw; }
-    .hero-content { padding: 2.5rem 1.5rem; }
-    section { padding: 4rem 1.5rem; }
-    .work-grid { grid-template-columns: 1fr; }
-    .brands-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-stats { grid-template-columns: repeat(2, 1fr); }
-    .footer-top { flex-direction: column; gap: 2.5rem; }
-    .footer-cols { flex-wrap: wrap; gap: 2rem; }
-    .contact-section { padding: 5rem 1.5rem; }
-    footer { padding: 3rem 1.5rem 2rem; }
-  }
+@media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){
+  nav{padding:1.25rem 1.5rem;}.nav-email{display:none;}
+  .page-header{padding:6rem 1.5rem 3rem;flex-direction:column;align-items:flex-start;gap:1rem;}
+  .filter-bar{padding:1rem 1.5rem;}
+  .work-grid{grid-template-columns:1fr;}
+  footer{padding:2rem 1.5rem;}
+}
 </style>
 </head>
 <body>
 
-<!-- PAGELOADER -->
-<div class="pageloader">
-  <div class="pageloader-text">MJAbiva©</div>
-</div>
-
-<!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">MJ Abiva</div>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="/personal">Personal</a></li>
-  </ul>
+  <a href="/" class="nav-logo">MJ Abiva</a>
+  <a href="/" class="nav-back">← Home</a>
   <a href="mailto:hello@mjabiva.com" class="nav-email">hello@mjabiva.com</a>
-  <button class="mobile-menu-btn" aria-label="Menu">
-    <span></span><span></span>
-  </button>
 </nav>
 
-<!-- HERO -->
-<section class="hero" style="border:none; padding:0;">
-  <div class="hero-image-col">
-    <img
-      src="/images/MJ-Hero-Image.jpg"
-      alt="MJ Abiva — Director & Producer"
-    />
-  </div>
-  <div class="hero-content">
-    <div class="hero-top">
-      <p class="hero-label">(Based in New York City)</p>
-      <h1 class="hero-name">MJ<br/><em>Abiva</em></h1>
-      <p class="hero-bio">
-        Kinetic media for dance, fashion, and cultural storytelling.
-        From competition floors to brand campaigns — documenting what moves people.
-      </p>
-      <div class="hero-disciplines">
-        <div class="hero-discipline">Director</div>
-        <div class="hero-discipline">Producer</div>
-        <div class="hero-discipline">Creative</div>
-      </div>
+<div class="page-header">
+  <h1 class="page-title">Work</h1>
+  <span class="page-count">(10 Projects)</span>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">Filter —</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="brand-campaign">Brand Campaign</button>
+  <button class="filter-btn" data-filter="dance-film">Dance Film</button>
+  <button class="filter-btn" data-filter="music-video">Music Video</button>
+  <button class="filter-btn" data-filter="live-event">Live Event</button>
+  <button class="filter-btn" data-filter="short-film">Short Film</button>
+</div>
+
+<div class="work-grid" id="workGrid">
+
+  <!-- Malloy James — Sunset Roof -->
+  <a href="/work/malloy-james-sunset-roof" class="work-item" data-category="music-video">
+    <div class="work-thumb"><img src="/images/sunset-roof/sunset-roof-cover.gif" alt="Malloy James — Sunset Roof"/></div>
+    <div class="work-info">
+      <span class="work-category">Music Video</span>
+      <div class="work-title">Malloy James —<br/>Sunset Roof</div>
+      <span class="work-year">2025</span>
     </div>
-    <div class="hero-bottom">
-      <div class="hero-partners">
-        <p class="hero-partners-label">(In collaboration with)</p>
-        <div class="hero-partners-logos">
-          <img
-            src="https://cdn.prod.website-files.com/67b6a3e9396b35d5111dc139/67b6aefb16844089f34c66be_Boat%2BBridge%20black.png"
-            alt="Boat + Bridge"
-          />
-          <img
-            src="https://cdn.prod.website-files.com/67b6a3e9396b35d5111dc139/67b6aeed0a44c7bcfcb3635f_vibrvncy%20black.png"
-            alt="Vibrvncy"
-            style="height:22px;"
-          />
-        </div>
-      </div>
-      <div class="hero-scroll">Scroll</div>
+    <span class="work-arrow">→</span>
+  </a>
+
+  <!-- Casio G-Shock x 88Rising -->
+  <a href="/work/casio-g-shock" class="work-item" data-category="brand-campaign">
+    <div class="work-thumb"><img src="/images/Casio Rich Brian gif cover.gif" alt="Casio G-Shock x 88Rising"/></div>
+    <div class="work-info">
+      <span class="work-category">Brand Campaign</span>
+      <div class="work-title">Casio G-Shock<br/>x 88Rising</div>
+      <span class="work-year">2023</span>
     </div>
-  </div>
-</section>
+    <span class="work-arrow">→</span>
+  </a>
 
-<!-- WORK -->
-<section id="work">
-  <div class="section-header">
-    <span class="section-tag">(Selected Work)</span>
-    <span class="section-tag">(01)</span>
-  </div>
-  <h2 class="section-title">Work</h2>
-  <p class="section-sub">documentation, direction &amp; production</p>
-
-  <div class="work-grid">
-    <a href="/work/malloy-james-sunset-roof" class="project-item">
-      <img
-        src="/images/sunset-roof/sunset-roof-cover.gif"
-        alt="Malloy James — Sunset Roof"
-      />
-      <div class="project-category">Music Video</div>
-      <div class="project-info">
-        <span class="project-title">Malloy James — Sunset Roof</span>
-        <span class="project-year">2025</span>
-      </div>
-    </a>
-    <a href="/work/casio-g-shock" class="project-item">
-      <img
-        src="/images/Casio Rich Brian gif cover.gif"
-        alt="Casio G-Shock x 88Rising"
-      />
-      <div class="project-category">Brand Campaign</div>
-      <div class="project-info">
-        <span class="project-title">Casio G-Shock x 88Rising</span>
-        <span class="project-year">2023</span>
-      </div>
-    </a>
-    <a href="/work/the-imagining" class="project-item">
-      <img
-        src="/images/The Imagining Cover.png"
-        alt="The Imagining — Amari Marshall x PowerHouse Arts"
-      />
-      <div class="project-category">Dance Film</div>
-      <div class="project-info">
-        <span class="project-title">The Imagining — Amari Marshall</span>
-        <span class="project-year">2024</span>
-      </div>
-    </a>
-    <a href="/work/troyboi" class="project-item">
-      <img
-        src="/images/Troyboi-Cover-image.gif"
-        alt="TroyBoi"
-      />
-      <div class="project-category">Live Event</div>
-      <div class="project-info">
-        <span class="project-title">TroyBoi</span>
-        <span class="project-year">2023</span>
-      </div>
-    </a>
-  </div>
-
-  <a href="/work" class="view-all-link">View all work</a>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-header">
-    <span class="section-tag">(What I do)</span>
-    <span class="section-tag">(02)</span>
-  </div>
-  <h2 class="section-title">Services</h2>
-  <p class="section-sub">designed around your vision</p>
-
-  <div class="services-grid">
-    <div class="service-item">
-      <span class="service-number">01 /</span>
-      <h3 class="service-name">Event<br/>Documentation</h3>
-      <p class="service-desc">
-        Full-coverage media production for dance competitions, showcases, festivals, and cultural events.
-        Multi-camera setups, clean audio, and fast turnarounds — everything you need to capture the moment and relive it.
-      </p>
-      <ul class="service-list">
-        <li>Multi-camera event coverage</li>
-        <li>Highlight reels &amp; recap films</li>
-        <li>Live stream production</li>
-        <li>Same-day turnaround available</li>
-        <li>Photography</li>
-      </ul>
-      <img
-        src="/images/Event documentation.png"
-        alt="Event Documentation"
-        class="service-image"
-      />
+  <!-- The Imagining -->
+  <a href="/work/the-imagining" class="work-item" data-category="dance-film">
+    <div class="work-thumb"><img src="/images/The Imagining Cover.png" alt="The Imagining — Amari Marshall"/></div>
+    <div class="work-info">
+      <span class="work-category">Dance Film</span>
+      <div class="work-title">The Imagining —<br/>Amari Marshall</div>
+      <span class="work-year">2024</span>
     </div>
+    <span class="work-arrow">→</span>
+  </a>
 
-    <div class="service-item">
-      <span class="service-number">02 /</span>
-      <h3 class="service-name">Video<br/>Production</h3>
-      <p class="service-desc">
-        Music videos, brand films, and narrative content — directed and produced from concept through final cut.
-        I work as director, DP, or both depending on your project needs.
-      </p>
-      <ul class="service-list">
-        <li>Direction &amp; creative development</li>
-        <li>Director of Photography</li>
-        <li>Editing &amp; post-production</li>
-        <li>Music videos</li>
-        <li>Brand &amp; commercial content</li>
-      </ul>
-      <img
-        src="/images/media-production.jpg"
-        alt="Video Production"
-        class="service-image"
-      />
+  <!-- TroyBoi -->
+  <a href="/work/troyboi" class="work-item" data-category="live-event">
+    <div class="work-thumb"><img src="/images/Troyboi-Cover-image.gif" alt="TroyBoi"/></div>
+    <div class="work-info">
+      <span class="work-category">Live Event</span>
+      <div class="work-title">TroyBoi</div>
+      <span class="work-year">2025</span>
     </div>
+    <span class="work-arrow">→</span>
+  </a>
 
-    <div class="service-item">
-      <span class="service-number">03 /</span>
-      <h3 class="service-name">Media<br/>Strategy</h3>
-      <p class="service-desc">
-        For organizations who need a media partner, not just a vendor.
-        I help teams build sustainable content systems around their events, programs, and brand presence.
-      </p>
-      <div style="margin-bottom:2rem;"></div>
-      <ul class="service-list">
-        <li>Event media planning</li>
-        <li>Content strategy &amp; calendars</li>
-        <li>Production consulting</li>
-        <li>Retainer packages available</li>
-        <li>Team coordination</li>
-      </ul>
-      <img
-        src="/images/Media Strategy.jpg"
-        alt="Media Strategy"
-        class="service-image"
-      />
+  <!-- Pandora -->
+  <a href="/work/pandora" class="work-item" data-category="brand-campaign">
+    <div class="work-thumb" style="background:#1a1816;display:flex;align-items:center;justify-content:center;">
+      <img src="/images/LOGOS/Pandora-logo.png" alt="Pandora" style="width:50%;height:auto;object-fit:contain;filter:invert(1);opacity:.4;"/>
     </div>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section class="brands-section" id="brands" style="border-top: 1px solid rgba(244,240,232,0.08);">
-  <div class="section-header">
-    <span class="section-tag">(Brands I've worked with)</span>
-    <span class="section-tag">(03)</span>
-  </div>
-  <h2 class="section-title">Brands</h2>
-  <p class="section-sub">selected collaborations</p>
-
-  <p class="brands-intro">
-    From dance floors to global campaigns — creating for the brands that move culture.
-  </p>
-
-  <div class="brands-grid">
-
-    <!-- ROW 1 — Global brands -->
-    <a href="/work/pandora" class="brand-item">
-      <img class="brand-logo" src="/images/logos/Pandora-Logo-PNG4.png" alt="Pandora Jewelry"/>
-    </a>
-    <div class="brand-item">
-      <img class="brand-logo" src="/images/logos/Amazon_Logo_0.svg" alt="Amazon"/>
+    <div class="work-info">
+      <span class="work-category">Brand Campaign</span>
+      <div class="work-title">Pandora</div>
+      <span class="work-year">2023 – 2024</span>
     </div>
-    <div class="brand-item">
-      <img class="brand-logo" src="/images/logos/Jack-Daniels-logo.svg" alt="Jack Daniel's"/>
+    <span class="work-arrow">→</span>
+  </a>
+
+  <!-- Billionaire Boys Club -->
+  <a href="/work/billionaire-boys-club" class="work-item" data-category="brand-campaign">
+    <div class="work-thumb">
+      <img src="/images/billionaire-boys-club-thumb.gif" alt="Billionaire Boys Club"/>
     </div>
-    <div class="brand-item">
-      <img class="brand-logo" src="/images/logos/hennessy-logo-svg-vector.svg" alt="Hennessy"/>
+    <div class="work-info">
+      <span class="work-category">Brand Campaign</span>
+      <div class="work-title">Billionaire<br/>Boys Club</div>
+      <span class="work-year">2023</span>
     </div>
+    <span class="work-arrow">→</span>
+  </a>
 
-    <!-- ROW 2 — Fashion / lifestyle -->
-    <div class="brand-item">
-      <img class="brand-logo" src="/images/logos/Converse_Logo_0.svg" alt="Converse"/>
+  <!-- Red Bull -->
+  <a href="/work/red-bull" class="work-item" data-category="brand-campaign">
+    <div class="work-thumb">
+      <img src="/images/red-bull-thumb.gif" alt="Red Bull"/>
     </div>
-    <a href="/work/casio-g-shock" class="brand-item">
-      <img class="brand-logo" src="/images/logos/G-Shock-logo.svg" alt="G-Shock"/>
-    </a>
-    <a href="/work/billionaire-boys-club" class="brand-item">
-      <img class="brand-logo" src="/images/logos/Billionaire-Boys-Club-Logo.png" alt="Billionaire Boys Club"/>
-    </a>
-    <a href="/work/universal-studios" class="brand-item">
-      <img class="brand-logo" src="/images/logos/Universal_Pictures_logo.svg.png" alt="Universal Studios"/>
-    </a>
-
-    <!-- ROW 3 — Dance / culture brands -->
-    <a href="/work/carnival" class="brand-item">
-      <img class="brand-logo" src="/images/logos/carnival.png" alt="Carnival"/>
-    </a>
-    <div class="brand-item" style="pointer-events:none;opacity:0.35;">
-      <img class="brand-logo" src="/images/logos/monsters-of-hip-hop-logo.png" alt="Monsters of Hip Hop"/>
+    <div class="work-info">
+      <span class="work-category">Brand Campaign</span>
+      <div class="work-title">Red Bull —<br/>BC One & Dance Your Style</div>
+      <span class="work-year">2023 – 2024</span>
     </div>
-    <a href="/work/red-bull" class="brand-item">
-      <img class="brand-logo" src="/images/logos/Red-Bull_idCMb-1Vvp_0.svg" alt="Red Bull"/>
-    </a>
-    <div class="brand-item" style="border-right:none;">
-      <img class="brand-logo" src="/images/logos/wod-logo.png" alt="World of Dance"/>
+    <span class="work-arrow">→</span>
+  </a>
+
+  <!-- Universal Studios -->
+  <a href="/work/universal-studios" class="work-item" data-category="brand-campaign">
+    <div class="work-thumb">
+      <img src="/images/UNIVRS-thumb.png" alt="Universal Studios"/>
     </div>
-
-  </div>
-
-  <!-- PARTNERS ROW — wordmark fades to sigil on hover -->
-  <div style="border:1px solid rgba(244,240,232,0.1);border-top:none;display:grid;grid-template-columns:1fr 1fr;">
-
-    <a href="https://vibrvncy.com" target="_blank" rel="noopener" class="brand-item">
-      <div class="partner-logo-wrap">
-        <img class="partner-wordmark"
-          src="/images/logos/vibrvncy-wordmark.png"
-          alt="Vibrvncy"/>
-        <img class="partner-sigil"
-          src="/images/logos/vibrvncy-triangle-white.png"
-          alt="Vibrvncy"/>
-      </div>
-    </a>
-
-    <a href="https://boatandbridge.com" target="_blank" rel="noopener" class="brand-item" style="border-right:none;">
-      <div class="partner-logo-wrap">
-        <img class="partner-wordmark"
-          src="/images/logos/bbwordmark2.png"
-          alt="Boat + Bridge"/>
-        <img class="partner-sigil"
-          src="/images/logos/bb2.png"
-          alt="Boat + Bridge"/>
-      </div>
-    </a>
-
-  </div>
-
-  <p class="brands-note">* Selected brand work produced in collaboration with agency partners Admerasia, Vibrvncy, and Loreto Jamlig Productions.</p>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header">
-    <span class="section-tag">(About)</span>
-    <span class="section-tag">(04)</span>
-  </div>
-  <div class="about-strip">
-    <div class="about-image-wrap">
-      <img
-        src="/images/MJ-DIRECTOR-AND-PRODUCER.jpg"
-        alt="MJ Abiva"
-      />
+    <div class="work-info">
+      <span class="work-category">Brand Campaign</span>
+      <div class="work-title">Universal Studios</div>
+      <span class="work-year">2022</span>
     </div>
-    <div class="about-content">
-      <h2 class="about-heading">Director<br/>&amp; <em style="font-style:italic; font-family:var(--font-display);">Producer</em></h2>
-      <p class="about-text">
-        MJ Abiva is a New York City-based <strong>director and media producer</strong> specializing in dance, fashion, and cultural storytelling. With over a decade behind the camera, he brings a kinetic, movement-first approach to every frame.
-      </p>
-      <p class="about-text">
-        Working at the intersection of art and documentation, MJ has produced content for global brands alongside agency partners, and served as the in-house media lead for some of the East Coast's most prominent dance organizations.
-      </p>
-      <p class="about-text">
-        He is the founder of <strong>Boathouse Studio</strong> and a creative partner with Boat+Bridge and Vibrvncy.
-      </p>
-      <div class="about-stats">
-        <div>
-          <span class="stat-num">10+</span>
-          <span class="stat-label">Years producing</span>
-        </div>
-        <div>
-          <span class="stat-num">50+</span>
-          <span class="stat-label">Events documented</span>
-        </div>
-        <div>
-          <span class="stat-num">NYC</span>
-          <span class="stat-label">Based &amp; available to travel</span>
-        </div>
-      </div>
+    <span class="work-arrow">→</span>
+  </a>
+
+  <!-- Carnival -->
+  <a href="/work/carnival" class="work-item" data-category="live-event">
+    <div class="work-thumb"><img src="/images/CARNIVAL/P1390610-2-2.jpg" alt="Choreographer's Carnival"/></div>
+    <div class="work-info">
+      <span class="work-category">Live Event</span>
+      <div class="work-title">Choreographer's<br/>Carnival</div>
+      <span class="work-year">Ongoing</span>
     </div>
-  </div>
-</section>
+    <span class="work-arrow">→</span>
+  </a>
 
-<!-- CONTACT -->
-<section class="contact-section" id="contact" style="border:none;">
-  <span class="contact-pre">(Let's work together)</span>
-  <h2 class="contact-heading">Get in<br/>touch.</h2>
-  <p class="contact-sub">
-    Available for event documentation, video production, and media strategy.
-    Based in New York City — traveling for the right project.
-  </p>
-  <a href="mailto:hello@mjabiva.com" class="contact-email-link">hello@mjabiva.com</a>
-</section>
+  <!-- Lady Lady -->
+  <a href="/work/lady-lady" class="work-item" data-category="dance-film">
+    <div class="work-thumb"><img src="/images/ladylady/LADY LADY GIF 3.gif" alt="Edson Maldonado — Lady Lady"/></div>
+    <div class="work-info">
+      <span class="work-category">Dance Film</span>
+      <div class="work-title">Edson Maldonado —<br/>Lady Lady</div>
+      <span class="work-year">2019</span>
+    </div>
+    <span class="work-arrow">→</span>
+  </a>
 
-<!-- FOOTER -->
+  <!-- Blood over Water -->
+  <a href="/work/blood-over-water" class="work-item" data-category="short-film">
+    <div class="work-thumb"><img src="/images/Blood over Water/blood-over-water1.gif" alt="Blood over Water"/></div>
+    <div class="work-info">
+      <span class="work-category">Short Film</span>
+      <div class="work-title">Blood over Water</div>
+      <span class="work-year">2019</span>
+    </div>
+    <span class="work-arrow">→</span>
+  </a>
+
+</div>
+
 <footer>
-  <div class="footer-top">
-    <div class="footer-wordmark">MJAbiva<span>©</span></div>
-    <div class="footer-cols">
-      <div>
-        <span class="footer-col-label">(Pages)</span>
-        <ul class="footer-col-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <span class="footer-col-label">(Connect)</span>
-        <ul class="footer-col-links">
-          <li><a href="https://instagram.com/mjabiva" target="_blank">Instagram</a></li>
-          <li><a href="https://vimeo.com/mjabiva" target="_blank">Vimeo</a></li>
-          <li><a href="mailto:hello@mjabiva.com">Email</a></li>
-        </ul>
-      </div>
-      <div>
-        <span class="footer-col-label">(Studio)</span>
-        <ul class="footer-col-links">
-          <li><a href="#">Boathouse Studio</a></li>
-          <li><a href="#">Boat + Bridge</a></li>
-          <li><a href="#">Vibrvncy</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 MJ Abiva. All rights reserved.</span>
-    <a href="#" class="footer-boathouse">A Boathouse Studio production.</a>
-  </div>
+  <a href="/" class="footer-back">← Back to home</a>
+  <span class="footer-mark">MJAbiva©</span>
 </footer>
 
+<script>
+// Filter functionality
+const btns = document.querySelectorAll('.filter-btn');
+const items = document.querySelectorAll('.work-item');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    items.forEach(item => {
+      if(f === 'all' || item.dataset.category === f){
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
