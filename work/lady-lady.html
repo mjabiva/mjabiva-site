@@ -158,7 +158,7 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
 <div class="video-section">
   <div class="video-wrapper">
     <iframe
-      src="https://www.youtube.com/embed/BnTyvcfLzxw?rel=0&modestbranding=1&color=white"
+      src="https://www.youtube.com/embed/wim8Fz6MOAI?rel=0&modestbranding=1&color=white"
       title="Edson Maldonado — Lady Lady"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
@@ -235,15 +235,130 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
   <!-- 2.35:1 cinematic stills. To add a photo, replace a cinema-placeholder div with:
        <img src="/images/ladylady/IMG_8229.JPG" alt="Lady Lady" style="width:100%;display:block;"/>
        Export stills cropped to 2.35:1 (e.g. 2350x1000px). -->
-  <div class="cinema-grid">
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
+  <style>
+  /* GIF + BTS side by side */
+  .gallery-row{display:flex;gap:6px;align-items:stretch;}
+  .gif-col{flex:2.35;min-width:0;}
+  .bts-col{flex:1;min-width:0;}
+  .gif-slideshow{position:relative;width:100%;aspect-ratio:2.35/1;overflow:hidden;background:#0C0B09;}
+  .gif-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;}
+  .gif-slide.active{opacity:1;}
+  .gif-slide img{width:100%;height:100%;object-fit:contain;display:block;}
+  .gif-dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:2;}
+  .gif-dot{width:6px;height:6px;border-radius:50%;background:rgba(244,240,232,.3);cursor:pointer;transition:background .3s;}
+  .gif-dot.active{background:rgba(244,240,232,.9);}
+  /* BTS single thumb */
+  .bts-col{display:flex;}
+  .bts-single{position:relative;overflow:hidden;cursor:pointer;width:100%;flex:1;}
+  .bts-single img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+  .bts-single:hover img{transform:scale(1.04);}
+  .bts-single-label{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.7);white-space:nowrap;pointer-events:none;}
+  /* Lightbox */
+  .ll-lightbox{display:none;position:fixed;inset:0;background:rgba(12,11,9,.92);z-index:1000;align-items:center;justify-content:center;}
+  .ll-lightbox.open{display:flex;}
+  .ll-lightbox-img{max-width:90vw;max-height:90vh;object-fit:contain;display:block;}
+  .ll-close{position:fixed;top:1.5rem;right:2rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.6);cursor:pointer;transition:color .2s;background:none;border:none;}
+  .ll-close:hover{color:#F4F0E8;}
+  .ll-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:1.5rem;color:rgba(244,240,232,.5);cursor:pointer;padding:1rem;transition:color .2s;background:none;border:none;}
+  .ll-nav:hover{color:#F4F0E8;}
+  .ll-prev{left:1rem;}
+  .ll-next{right:1rem;}
+  .ll-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(244,240,232,.4);}
+  @media(max-width:768px){
+    .gallery-row{grid-template-columns:1fr;grid-template-rows:auto auto;}
+    .gif-slideshow{aspect-ratio:2.35/1;height:auto;}
+    .bts-single{aspect-ratio:4/3;height:auto;}
+  }
+  </style>
+
+  <div class="gallery-row">
+    <!-- GIF Slideshow -->
+    <div class="gif-col">
+    <div class="gif-slideshow" id="gifSlideshow">
+      <div class="gif-slide active"><img src="/images/ladylady/LADY LADY GIF 1.gif" alt="Lady Lady"/></div>
+      <div class="gif-slide"><img src="/images/ladylady/LADY LADY GIF 2.gif" alt="Lady Lady"/></div>
+      <div class="gif-slide"><img src="/images/ladylady/LADY LADY GIF 3.gif" alt="Lady Lady"/></div>
+      <div class="gif-slide"><img src="/images/ladylady/LADY LADY GIF 4.gif" alt="Lady Lady"/></div>
+      <div class="gif-dots">
+        <div class="gif-dot active" onclick="goToSlide(0)"></div>
+        <div class="gif-dot" onclick="goToSlide(1)"></div>
+        <div class="gif-dot" onclick="goToSlide(2)"></div>
+        <div class="gif-dot" onclick="goToSlide(3)"></div>
+      </div>
+    </div>
+    </div><!-- end gif-col -->
+    <!-- Single BTS thumb — click to open lightbox -->
+    <div class="bts-col">
+    <div class="bts-single" onclick="openLightbox(0)">
+      <img src="/images/ladylady/IMG_8229.JPG" alt="Lady Lady BTS"/>
+      <span class="bts-single-label">(BTS) 1 / 4</span>
+    </div>
+    </div><!-- end bts-col -->
   </div>
+
+  <!-- Lightbox -->
+  <div class="ll-lightbox" id="llLightbox" onclick="closeLightboxBg(event)">
+    <button class="ll-close" onclick="closeLightbox()">✕ Close</button>
+    <button class="ll-nav ll-prev" onclick="event.stopPropagation();lightboxNav(-1)">←</button>
+    <img class="ll-lightbox-img" id="llImg" src="" alt="Lady Lady BTS"/>
+    <button class="ll-nav ll-next" onclick="event.stopPropagation();lightboxNav(1)">→</button>
+    <span class="ll-counter" id="llCounter"></span>
+  </div>
+
+  <script>
+  // GIF Slideshow
+  (function(){
+    var slides = document.querySelectorAll('.gif-slide');
+    var dots = document.querySelectorAll('.gif-dot');
+    var current = 0;
+    var timer;
+    function goToSlide(n){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = n;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      clearInterval(timer);
+      timer = setInterval(next, 4000);
+    }
+    function next(){ goToSlide((current+1) % slides.length); }
+    window.goToSlide = goToSlide;
+    timer = setInterval(next, 4000);
+  })();
+  // Lightbox
+  var llImages = [
+    '/images/ladylady/IMG_8229.JPG',
+    '/images/ladylady/IMG_8230.JPG',
+    '/images/ladylady/IMG_8231.JPG',
+    '/images/ladylady/IMG_8232.JPG'
+  ];
+  var llCurrent = 0;
+  function openLightbox(i){
+    llCurrent = i;
+    document.getElementById('llImg').src = llImages[i];
+    document.getElementById('llCounter').textContent = (i+1) + ' / ' + llImages.length;
+    document.getElementById('llLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    document.getElementById('llLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightboxBg(e){
+    if(e.target === document.getElementById('llLightbox')) closeLightbox();
+  }
+  function lightboxNav(dir){
+    llCurrent = (llCurrent + dir + llImages.length) % llImages.length;
+    document.getElementById('llImg').src = llImages[llCurrent];
+    document.getElementById('llCounter').textContent = (llCurrent+1) + ' / ' + llImages.length;
+  }
+  document.addEventListener('keydown', function(e){
+    if(!document.getElementById('llLightbox').classList.contains('open')) return;
+    if(e.key === 'ArrowLeft') lightboxNav(-1);
+    if(e.key === 'ArrowRight') lightboxNav(1);
+    if(e.key === 'Escape') closeLightbox();
+  });
+  </script>
 </div>
 
 </div>

@@ -96,22 +96,23 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
   </div>
 </div>
 
-<!-- VIDEO — embed when ready -->
+<!-- VIDEO — hidden until project releases
 <div class="video-section">
   <div class="video-placeholder-full">
     <div class="video-placeholder-bar"></div>
     <span>Video embed coming soon</span>
   </div>
 </div>
+-->
 
 <div class="description-section">
   <div>
     <h2 class="description-heading">About<br/>the Film</h2>
     <p class="description-text">
-      <strong>Sunset Roof</strong> is a music video for artist <strong>Malloy James</strong> — a rooftop golden hour production shot in New York City, directed and photographed by MJ Abiva.
+      <strong>Sunset Roof</strong> is a music video for artist <strong>Malloy James</strong> — filmed on location in The Hamptons, directed and photographed by MJ Abiva.
     </p>
     <p class="description-text">
-      Co-directed by Malloy James and MJ Abiva, the film captures the warmth and intimacy of late afternoon light against the New York City skyline, with a deliberate and minimal crew.
+      Co-directed by Malloy James and MJ Abiva, the film captures the warmth and intimacy of a weekend with a summer fling, and what happens when it has to end.
     </p>
   </div>
   <div>
@@ -129,23 +130,85 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
   </div>
 </div>
 
-<!-- 2.35:1 GALLERY -->
-<div class="gallery-section">
-  <span class="gallery-label">(Stills)</span>
-  <h2 class="gallery-heading">Gallery</h2>
-  <!-- To add photos, replace cinema-placeholder divs:
-       <img src="/images/sunset-roof/photo.jpg" alt="Sunset Roof" style="width:100%;display:block;"/>
-       All photos should be 2.35:1 ratio (e.g. 2350x1000px) -->
-  <div class="cinema-grid">
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item"><div class="cinema-placeholder"><span>2.35:1 still</span></div></div>
-    <div class="cinema-item full"><div class="cinema-placeholder"><span>2.35:1 — Add cinematic still</span></div></div>
+<!-- CINEMATIC STILLS -->
+<style>
+.stills-scroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.stills-scroll-wrap::-webkit-scrollbar{display:none;}
+.stills-scroll-track{display:flex;gap:6px;padding:0 3rem;}
+.stills-scroll-item{flex:0 0 auto;aspect-ratio:2.35/1;height:460px;overflow:hidden;}
+.stills-scroll-item img{height:100%;width:auto;display:block;object-fit:cover;}
+@media(max-width:768px){
+  .stills-scroll-track{padding:0 1.5rem;}
+  .stills-scroll-item{height:240px;}
+}
+</style>
+<div class="stills-section">
+  <span class="stills-label" style="padding:0 3rem;display:block;">(Stills)</span>
+  <h2 class="stills-heading" style="padding:0 3rem;margin-bottom:2rem;">Gallery</h2>
+  <div class="stills-scroll-wrap">
+    <div class="stills-scroll-track">
+      <div class="stills-scroll-item"><img src="/images/sunset-roof/Sunset-Roof-Stills1.png" alt="Sunset Roof"/></div>
+      <div class="stills-scroll-item"><img src="/images/sunset-roof/Sunset-Roof-Stills2.png" alt="Sunset Roof"/></div>
+      <div class="stills-scroll-item"><img src="/images/sunset-roof/Sunset-Roof-Stills3.png" alt="Sunset Roof"/></div>
+    </div>
   </div>
 </div>
+<!-- BTS SLIDESHOW -->
+<style>
+.bts-section{padding:5rem 3rem;border-bottom:1px solid var(--border);}
+.bts-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:block;}
+.bts-heading{font-family:var(--font-display);font-size:clamp(2.5rem,4vw,4rem);font-weight:800;text-transform:uppercase;line-height:.9;margin-bottom:3rem;}
+.bts-slideshow{position:relative;width:100%;max-width:720px;aspect-ratio:4/3;overflow:hidden;background:#0C0B09;}
+.bts-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;}
+.bts-slide.active{opacity:1;}
+.bts-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.bts-dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:2;}
+.bts-dot{width:6px;height:6px;border-radius:50%;background:rgba(244,240,232,.3);cursor:pointer;transition:background .3s;}
+.bts-dot.active{background:rgba(244,240,232,.9);}
+.stills-section{padding:5rem 3rem;border-bottom:1px solid var(--border);}
+.stills-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:block;}
+.stills-heading{font-family:var(--font-display);font-size:clamp(2.5rem,4vw,4rem);font-weight:800;text-transform:uppercase;line-height:.9;margin-bottom:3rem;}
+@media(max-width:768px){
+  .bts-section,.stills-section{padding:3.5rem 1.5rem;}
+}
+</style>
+
+<div class="bts-section">
+  <span class="bts-label">(Behind the Scenes)</span>
+  <h2 class="bts-heading">On Set</h2>
+  <div class="bts-slideshow" id="btsSlideshow">
+    <div class="bts-slide active"><img src="/images/sunset-roof/IMG_6640.png" alt="Sunset Roof BTS"/></div>
+    <div class="bts-slide"><img src="/images/sunset-roof/IMG_6645.png" alt="Sunset Roof BTS"/></div>
+    <div class="bts-slide"><img src="/images/sunset-roof/IMG_6647.png" alt="Sunset Roof BTS"/></div>
+    <div class="bts-slide"><img src="/images/sunset-roof/IMG_6649.png" alt="Sunset Roof BTS"/></div>
+    <div class="bts-dots">
+      <div class="bts-dot active" onclick="btsBtsSlide(0)"></div>
+      <div class="bts-dot" onclick="btsBtsSlide(1)"></div>
+      <div class="bts-dot" onclick="btsBtsSlide(2)"></div>
+      <div class="bts-dot" onclick="btsBtsSlide(3)"></div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var slides = document.querySelectorAll('.bts-slide');
+    var dots = document.querySelectorAll('.bts-dot');
+    var current = 0;
+    var timer;
+    function goTo(n){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = n;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      clearInterval(timer);
+      timer = setInterval(function(){ goTo((current+1)%slides.length); }, 4000);
+    }
+    window.btsBtsSlide = goTo;
+    timer = setInterval(function(){ goTo((current+1)%slides.length); }, 4000);
+  })();
+  </script>
+</div>
+
 
 <a href="/work/the-imagining" class="next-project">
   <div>

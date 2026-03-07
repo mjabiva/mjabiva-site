@@ -81,7 +81,7 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
   <div class="project-subtitle">Brand Campaign</div>
   <div class="project-details">
     <div><span class="detail-label">Client</span><span class="detail-value">Carnival</span></div>
-    <div><span class="detail-label">Role</span><span class="detail-value"><!-- Add your role here --></span></div>
+    <div><span class="detail-label">Role</span><span class="detail-value">Photographer</span></div>
     <div><span class="detail-label">Category</span><span class="detail-value">Brand Campaign</span></div>
     <div><span class="detail-label">Year</span><span class="detail-value">2024</span></div>
   </div>
@@ -92,35 +92,100 @@ footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:
     <h2 class="description-heading">About<br/>the Work</h2>
     <!-- Replace this with your description -->
     <p class="description-text">
-      Campaign work for <strong>Carnival</strong> — add your project description here.
+      <strong>Choreographer's Carnival</strong> is one of the longest-running dance showcases in the world — over 26 years of giving choreographers and dancers a stage for pure, unscripted artistic expression. No artist, no director, no script. Just movement.
+    </p>
+    <p class="description-text">
+      Born in Los Angeles and now spanning New York, Chicago, London, Tokyo, Sydney, Italy, and Las Vegas, Carnival has launched or elevated the careers of some of the most recognized names in the dance world — and attracted icons from Janet Jackson to Missy Elliott, Debbie Allen to Kenny Ortega.
+    </p>
+    <p class="description-text">
+      MJ served as <strong>Photographer</strong>, documenting the energy and artistry of one of dance culture's most enduring institutions.
     </p>
   </div>
   <div>
     <span class="credits-label">(Credits)</span>
     <ul class="credits-list">
-      <!-- Add credits here -->
-      <li class="credit-item"><span class="credit-role"><!-- Role --></span><span class="credit-name"><!-- Name --></span></li>
+      <li class="credit-item"><span class="credit-role">Photographer</span><span class="credit-name">MJ Abiva</span></li>
+      <li class="credit-item"><span class="credit-role">Client</span><span class="credit-name">Choreographer's Carnival</span></li>
     </ul>
   </div>
 </div>
 
+<style>
+.carnival-scroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.carnival-scroll-wrap::-webkit-scrollbar{display:none;}
+.carnival-scroll-track{display:flex;gap:6px;}
+.carnival-scroll-item{flex:0 0 auto;height:520px;overflow:hidden;cursor:pointer;}
+.carnival-scroll-item img{height:100%;width:auto;display:block;object-fit:cover;transition:transform .4s;}
+.carnival-scroll-item:hover img{transform:scale(1.03);}
+/* Lightbox */
+.cn-lightbox{display:none;position:fixed;inset:0;background:rgba(12,11,9,.93);z-index:1000;align-items:center;justify-content:center;}
+.cn-lightbox.open{display:flex;}
+.cn-lightbox-img{max-width:90vw;max-height:90vh;object-fit:contain;display:block;}
+.cn-close{position:fixed;top:1.5rem;right:2rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.6);cursor:pointer;background:none;border:none;transition:color .2s;}
+.cn-close:hover{color:#F4F0E8;}
+.cn-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:1.5rem;color:rgba(244,240,232,.5);cursor:pointer;padding:1rem;background:none;border:none;transition:color .2s;}
+.cn-nav:hover{color:#F4F0E8;}
+.cn-prev{left:1rem;}
+.cn-next{right:1rem;}
+.cn-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(244,240,232,.4);}
+@media(max-width:768px){.carnival-scroll-item{height:280px;}}
+</style>
+
 <div class="gallery-section">
   <span class="gallery-label">(Gallery)</span>
   <h2 class="gallery-heading">Photography</h2>
-  <!-- Replace placeholders:
-       <img src="/images/carnival/photo.jpg" alt="Carnival" style="width:100%;display:block;"/> -->
-  <div class="photo-grid">
-    <div class="photo-item wide"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item wide"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item wide"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder"><span>Add photo</span></div></div>
+  <div class="carnival-scroll-wrap">
+    <div class="carnival-scroll-track">
+      <div class="carnival-scroll-item" onclick="cnOpen(0)"><img src="/images/CARNIVAL/P1390610-2-2.jpg" alt="Carnival"/></div>
+      <div class="carnival-scroll-item" onclick="cnOpen(1)"><img src="/images/CARNIVAL/P1260572.jpg" alt="Carnival"/></div>
+      <div class="carnival-scroll-item" onclick="cnOpen(2)"><img src="/images/CARNIVAL/P1270482.jpg" alt="Carnival"/></div>
+      <div class="carnival-scroll-item" onclick="cnOpen(3)"><img src="/images/CARNIVAL/P1270522.jpg" alt="Carnival"/></div>
+      <div class="carnival-scroll-item" onclick="cnOpen(4)"><img src="/images/CARNIVAL/P1400694-2-2.jpg" alt="Carnival"/></div>
+    </div>
   </div>
 </div>
+
+<!-- Lightbox -->
+<div class="cn-lightbox" id="cnLightbox" onclick="cnCloseBg(event)">
+  <button class="cn-close" onclick="cnClose()">✕ Close</button>
+  <button class="cn-nav cn-prev" onclick="event.stopPropagation();cnNav(-1)">←</button>
+  <img class="cn-lightbox-img" id="cnImg" src="" alt="Carnival"/>
+  <button class="cn-nav cn-next" onclick="event.stopPropagation();cnNav(1)">→</button>
+  <span class="cn-counter" id="cnCounter"></span>
+</div>
+<script>
+var cnImages = [
+  '/images/CARNIVAL/P1390610-2-2.jpg',
+  '/images/CARNIVAL/P1260572.jpg',
+  '/images/CARNIVAL/P1270482.jpg',
+  '/images/CARNIVAL/P1270522.jpg',
+  '/images/CARNIVAL/P1400694-2-2.jpg'
+];
+var cnCurrent = 0;
+function cnOpen(i){
+  cnCurrent = i;
+  document.getElementById('cnImg').src = cnImages[i];
+  document.getElementById('cnCounter').textContent = (i+1) + ' / ' + cnImages.length;
+  document.getElementById('cnLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function cnClose(){
+  document.getElementById('cnLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function cnCloseBg(e){ if(e.target === document.getElementById('cnLightbox')) cnClose(); }
+function cnNav(dir){
+  cnCurrent = (cnCurrent + dir + cnImages.length) % cnImages.length;
+  document.getElementById('cnImg').src = cnImages[cnCurrent];
+  document.getElementById('cnCounter').textContent = (cnCurrent+1) + ' / ' + cnImages.length;
+}
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('cnLightbox').classList.contains('open')) return;
+  if(e.key === 'ArrowLeft') cnNav(-1);
+  if(e.key === 'ArrowRight') cnNav(1);
+  if(e.key === 'Escape') cnClose();
+});
+</script>
 
 <a href="/work/monsters-of-hip-hop" class="next-project">
   <div>
