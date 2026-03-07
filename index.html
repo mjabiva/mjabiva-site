@@ -56,7 +56,7 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.5rem 3rem;
     background: var(--cream);
@@ -729,12 +729,12 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: var(--bg);
+    background: #F4F0E8;
     z-index: 999;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 2rem;
   }
   .mobile-nav-overlay.open { display: flex; }
   .mobile-nav-overlay a {
@@ -743,7 +743,7 @@
     font-weight: 700;
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: #1A1816;
     text-decoration: none;
     opacity: 0.85;
     transition: opacity 0.2s;
@@ -755,7 +755,7 @@
     letter-spacing: .15em;
     margin-top: 1rem;
     opacity: 0.4;
-    color: var(--ink);
+    color: #1A1816;
     text-decoration: none;
   }
 
